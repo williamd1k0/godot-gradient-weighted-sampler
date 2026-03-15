@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GradientWeightedSampler" format=3 uid="uid://g8eq4vjjhquf"]
+
+[ext_resource type="Resource" uid="uid://m3sp0afcsclk" path="res://custom-weights.tres" id="1_3j10a"]
+[ext_resource type="Script" uid="uid://roleq62nurf3" path="res://GradientWeightedSampler.gd" id="1_y28uq"]
+
+[sub_resource type="Gradient" id="Gradient_3j10a"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.125, 0.4207317, 0.5)
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1)
+
+[resource]
+script = ExtResource("1_y28uq")
+weights = SubResource("Gradient_3j10a")
+defs = ExtResource("1_3j10a")
+metadata/_custom_type_script = "uid://roleq62nurf3"
