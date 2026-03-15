@@ -3,6 +3,40 @@
 [ext_resource type="Script" uid="uid://bjjo857owq6ea" path="res://Main.gd" id="1_glv2v"]
 [ext_resource type="Resource" uid="uid://g8eq4vjjhquf" path="res://gradient-weighted-sampler.tres" id="2_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://b8otve80l27ue" path="res://RandomElement.tscn" id="3_r0du0"]
+[ext_resource type="Script" uid="uid://djmb1evu8j66y" path="res://shapes/ShapeData.gd" id="4_fos0i"]
+[ext_resource type="Script" uid="uid://br05igndp56jc" path="res://shapes/CircleShapeData.gd" id="5_3dxm6"]
+[ext_resource type="Script" uid="uid://gf746memtiwj" path="res://shapes/PolygonShapeData.gd" id="6_3dxm6"]
+
+[sub_resource type="Resource" id="Resource_lgr22"]
+script = ExtResource("5_3dxm6")
+radius = 10.0
+line_width = 1.0
+fill_color = Color(0.93333334, 0.21176471, 0.38431373, 1)
+metadata/_custom_type_script = "uid://br05igndp56jc"
+
+[sub_resource type="Resource" id="Resource_trn2v"]
+script = ExtResource("6_3dxm6")
+size = 12.0
+line_width = 1.0
+fill_color = Color(0, 1, 0.49411765, 1)
+metadata/_custom_type_script = "uid://gf746memtiwj"
+
+[sub_resource type="Resource" id="Resource_3dxm6"]
+script = ExtResource("6_3dxm6")
+sides = 4
+rotation = -45.0
+size = 10.0
+line_width = 1.0
+fill_color = Color(0.34117648, 1, 1, 1)
+metadata/_custom_type_script = "uid://gf746memtiwj"
+
+[sub_resource type="Resource" id="Resource_03owx"]
+script = ExtResource("6_3dxm6")
+sides = 5
+size = 10.0
+line_width = 1.0
+fill_color = Color(1, 0.81960785, 0.25490198, 1)
+metadata/_custom_type_script = "uid://gf746memtiwj"
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uu6xs"]
 
@@ -19,22 +53,24 @@ gradient = SubResource("Gradient_r0du0")
 script = ExtResource("1_glv2v")
 random_sampler = ExtResource("2_uu6xs")
 random_object = ExtResource("3_r0du0")
+shapes = Dictionary[int, ExtResource("4_fos0i")]({
+0: SubResource("Resource_lgr22"),
+1: SubResource("Resource_trn2v"),
+2: SubResource("Resource_3dxm6"),
+3: SubResource("Resource_03owx")
+})
 
 [node name="RedMarker2D" type="Marker2D" parent="." unique_id=1753563111]
-modulate = Color(0.9324022, 0.21000388, 0.3846262, 1)
-position = Vector2(51, 57)
+position = Vector2(51, 0)
 
 [node name="GreenMarker2D" type="Marker2D" parent="." unique_id=1008323485]
-modulate = Color(0, 1, 0.49341863, 1)
-position = Vector2(159, 61)
+position = Vector2(159, 0)
 
 [node name="BlueMarker2D" type="Marker2D" parent="." unique_id=1284682692]
-modulate = Color(0.34237343, 1, 1, 1)
-position = Vector2(292, 62)
+position = Vector2(292, 0)
 
 [node name="YellowMarker2D" type="Marker2D" parent="." unique_id=72135885]
-modulate = Color(1, 0.8198382, 0.25524214, 1)
-position = Vector2(398, 70)
+position = Vector2(398, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=430643166]
 position = Vector2(0, 318)
@@ -62,19 +98,27 @@ shape = SubResource("SegmentShape2D_r0du0")
 position = Vector2(460, 1)
 shape = SubResource("SegmentShape2D_r0du0")
 
-[node name="SpawnBtn" type="Button" parent="." unique_id=865067077]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -60.0
-offset_bottom = 31.0
-grow_horizontal = 0
-text = "Spawn"
-
 [node name="GradientSampled" type="TextureRect" parent="." unique_id=257811111]
 offset_right = 70.0
 offset_bottom = 17.0
 texture = SubResource("GradientTexture1D_cm0pq")
 expand_mode = 1
 
-[connection signal="pressed" from="SpawnBtn" to="." method="_on_spawn_btn_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1568595117]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="ResetBtn" type="Button" parent="HBoxContainer" unique_id=1654303314]
+layout_mode = 2
+text = "Reset"
+
+[node name="SpawnBtn" type="Button" parent="HBoxContainer" unique_id=865067077]
+layout_mode = 2
+text = "Spawn"
+
+[connection signal="pressed" from="HBoxContainer/ResetBtn" to="." method="_on_reset_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/SpawnBtn" to="." method="_on_spawn_btn_pressed"]

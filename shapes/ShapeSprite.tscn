@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://828cw2ay83i"]
+
+[ext_resource type="Script" uid="uid://cw20y7mujolas" path="res://game/elements/vfx/ShapeSprite.gd" id="1_1mgfs"]
+
+[node name="ShapeSprite" type="Node2D" unique_id=632731310]
+script = ExtResource("1_1mgfs")

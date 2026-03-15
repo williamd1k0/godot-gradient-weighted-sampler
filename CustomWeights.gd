@@ -2,7 +2,7 @@ class_name CustomWeights
 extends WeightedSamplerDefs
 
 enum Type {
-	RED, GREEN, BLUE, YELLOW
+	CIRCLE, TRIANGLE, SQUARE, POLYGON
 }
 
 @export var defs :Dictionary[Type, Color]
